@@ -1,0 +1,87 @@
+
+/**
+ * Write a description of class WordPlay here.
+ *
+ * @author (your name)
+ * @version (a version number or a date)
+ */
+public class WordPlay
+{
+    public String encrypt(String input, int key){
+     StringBuilder encrypted = new StringBuilder(input);
+     
+     String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+     
+     String shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0,key);
+     
+     for(int i= 0; i < encrypted.length(); i++){
+         char currChar = encrypted.charAt(i);
+         
+         int idx = alphabet.indexOf(currChar);
+         
+         if (idx != -1){
+            char newChar = shiftedAlphabet.charAt(idx);
+            
+            encrypted.setCharAt(i, newChar);
+          
+            }
+        }
+        return encrypted.toString();
+    }
+    
+    
+    public boolean isvowel(char ch){
+         ch = 'F';
+         if(ch == 'a'|| ch == 'e' || ch == 'i' || ch == 'o' || ch =='u' || ch == 'A' ||
+         ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U'){
+            return true; 
+            }
+            
+         return false;
+           
+    }
+    
+    public String replaceVowels(String Phrase, char ch) {
+     StringBuilder newString = new StringBuilder(Phrase);
+     for (int i = 0; i <Phrase.length(); i++){
+        if(isvowel(newString.charAt(i))){
+            newString.setCharAt(i, ch);
+        
+        }
+        }
+     return newString.toString();
+    }
+    
+    public String emphasize(String Phrase, char ch){
+     StringBuilder replace = new StringBuilder(Phrase);
+     for(int i = 0; i < Phrase.length(); i++){
+        if(i%2 ==0) {
+         replace.setCharAt(i, '*');
+        } else {
+         replace.setCharAt(i, '+');
+        }
+        }
+        
+     return replace.toString();
+    }
+    
+    public void testEmphasize() {
+     System.out.println(emphasize("dna ctagaaactga", 'a'));
+     System.out.println(emphasize("Mary Bella Abracadabra", 'a'));
+    } 
+    
+    public void testreplaceVowels(){
+     System.out.println(replaceVowels("Hellow World", '*'));
+     System.out.println(replaceVowels("How is color wars going?" , '%'));
+    }
+     
+    public void testisvowel(){
+        System.out.println("isVowel('F') should return false: " + isvowel('F'));
+        System.out.println("isVowel('a') should return true: " + isvowel('a'));
+        
+    }
+    
+    public void testCaesar(){
+     int key =  17;
+    }
+}
